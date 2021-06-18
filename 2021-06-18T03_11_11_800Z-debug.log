@@ -1,0 +1,34 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/local/bin/node',
+1 verbose cli   '/usr/local/bin/npm',
+1 verbose cli   'install',
+1 verbose cli   '@km-blip/npm-cache@1.0.1',
+1 verbose cli   '--registry=https://npm.pkg.github.com/' ]
+2 info using npm@6.9.0
+3 info using node@v10.16.0
+4 verbose npm-session 746b72a3e91e54d4
+5 silly install loadCurrentTree
+6 silly install readLocalPackageData
+7 http fetch GET 200 https://npm.pkg.github.com/@km-blip%2fnpm-cache 928ms
+8 http fetch GET 404 https://npm.pkg.github.com/download/@km-blip/npm-cache/1.0.1/11a4d73de6ba08bbbc014f21601f9e7a24d71a757e4c6cdcbbfdcf65cfcf9feb 635ms
+9 silly fetchPackageMetaData error for @km-blip/npm-cache@1.0.1 404 Not Found - GET https://npm.pkg.github.com/download/@km-blip/npm-cache/1.0.1/11a4d73de6ba08bbbc014f21601f9e7a24d71a757e4c6cdcbbfdcf65cfcf9feb
+10 timing stage:rollbackFailedOptional Completed in 1ms
+11 timing stage:runTopLevelLifecycles Completed in 2999ms
+12 verbose stack Error: 404 Not Found - GET https://npm.pkg.github.com/download/@km-blip/npm-cache/1.0.1/11a4d73de6ba08bbbc014f21601f9e7a24d71a757e4c6cdcbbfdcf65cfcf9feb
+12 verbose stack     at res.buffer.catch.then.body (/usr/local/lib/node_modules/npm/node_modules/npm-registry-fetch/check-response.js:104:15)
+12 verbose stack     at process._tickCallback (internal/process/next_tick.js:68:7)
+13 verbose statusCode 404
+14 verbose pkgid @km-blip/npm-cache@1.0.1
+15 verbose cwd /Users/mtmac00064/Desktop/cache/0618-test
+16 verbose Darwin 19.6.0
+17 verbose argv "/usr/local/bin/node" "/usr/local/bin/npm" "install" "@km-blip/npm-cache@1.0.1" "--registry=https://npm.pkg.github.com/"
+18 verbose node v10.16.0
+19 verbose npm  v6.9.0
+20 error code E404
+21 error 404 Not Found - GET https://npm.pkg.github.com/download/@km-blip/npm-cache/1.0.1/11a4d73de6ba08bbbc014f21601f9e7a24d71a757e4c6cdcbbfdcf65cfcf9feb
+22 error 404
+23 error 404 '@km-blip/npm-cache@1.0.1' is not in the npm registry.
+24 error 404 You should bug the author to publish it (or use the name yourself!)
+25 error 404 Note that you can also install from a
+26 error 404 tarball, folder, http url, or git url.
+27 verbose exit [ 1, true ]
