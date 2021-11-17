@@ -32,8 +32,9 @@ jobs:
           curl -fSL https://github.com/openresty/headers-more-nginx-module/archive/v$MORE_SET_HEADER_VERSION.tar.gz -o $MORE_SET_HEADER_VERSION.tar.gz && tar xvf $MORE_SET_HEADER_VERSION.tar.gz  && \
           git clone -b v$OPENTRACING_CPP_VERSION https://github.com/opentracing/opentracing-cpp.git
           ls -la
-
-          mkdir opentracing-cpp/.build
+          pwd
+          mkdir -p opentracing-cpp/.build
+          
           cd opentracing-cpp/.build
           cmake -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=OFF .. && ls && make && make install
           
@@ -41,13 +42,13 @@ jobs:
           git clone -b v$DD_OPENTRACING_CPP_VERSION https://github.com/DataDog/dd-opentracing-cpp.git
           
           cd /__w/nginx-cache/nginx-cache
-          mkdir dd-opentracing-cpp
+          mkdir -p dd-opentracing-cpp
           cd /__w/nginx-cache/nginx-cache/dd-opentracing-cpp
-          #git submodule update --init --recursive \
-          #/bin/sh ./scripts/install_dependencies.sh not-zlib not-curl not-opentracing
+          git submodule update --init --recursive \
+          /bin/sh ./scripts/install_dependencies.sh not-zlib not-curl not-opentracing
           
           cd /__w/nginx-cache/nginx-cache
-          mkdir dd-opentracing-cpp/.build
+          mkdir -p dd-opentracing-cpp/.build
           cd /__w/nginx-cache/nginx-cache/dd-opentracing-cpp/.build
           cmake -DCMAKE_BUILD_TYPE=Release -DBUILD_STATIC=ON -DBUILD_PLUGIN=ON .. \
           make && make install
@@ -55,8 +56,7 @@ jobs:
           cd /__w/nginx-cache/nginx-cache
           git clone https://github.com/opentracing-contrib/nginx-opentracing.git \
           git clone -b release-$NGINX_VERSION https://github.com/nginx/nginx.git
-          
-          mkdir nginx
+          mkdir -p nginx
           cd /__w/nginx-cache/nginx-cache/nginx
           auto/configure --add-module=/build/headers-more-nginx-module-$MORE_SET_HEADER_VERSION && make -j"$(getconf _NPROCESSORS_ONLN)" && make install \
           auto/configure --with-compat --add-dynamic-module=/build/nginx-opentracing/opentracing --with-debug && make modules && echo Made
