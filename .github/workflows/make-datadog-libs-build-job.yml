@@ -37,9 +37,9 @@ jobs:
           
           cd opentracing-cpp/.build
           cmake -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=OFF .. && ls && make && make install
-          cd /
+          cd .
           ls -R
-          mv /output /__w/nginx-cache/nginx-cache/lib
+          mv ./output /__w/nginx-cache/nginx-cache/lib
           
           cd /__w/nginx-cache/nginx-cache
           git clone -b v$DD_OPENTRACING_CPP_VERSION https://github.com/DataDog/dd-opentracing-cpp.git
@@ -64,9 +64,9 @@ jobs:
           #mkdir -p /__w/nginx-cache/nginx-cache/nginx-opentracing/opentracing/config
           auto/configure --add-module=/__w/nginx-cache/nginx-cache/headers-more-nginx-module-$MORE_SET_HEADER_VERSION && make -j"$(getconf _NPROCESSORS_ONLN)" && make install
           auto/configure --with-compat --add-dynamic-module=/__w/nginx-cache/nginx-cache/nginx-opentracing/opentracing --with-debug && make modules && echo Made
-          cd /__w/nginx-cache/nginx-cache
+          cd /
           ls -R
-          mv /objs/ngx_http_opentracing_module.so /__w/nginx-cache/nginx-cache/lib/ngx_http_opentracing_module.so
+          mv ./objs/ngx_http_opentracing_module.so /__w/nginx-cache/nginx-cache/lib/ngx_http_opentracing_module.so
           mkdir -p /__w/nginx-cache/nginx-cache/lib/cmake
           mv /__w/nginx-cache/nginx-cache/opentracing-cpp/.build /__w/nginx-cache/nginx-cache/lib/cmake
           
