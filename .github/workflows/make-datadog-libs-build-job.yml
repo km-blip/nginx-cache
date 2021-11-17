@@ -43,7 +43,7 @@ jobs:
           cd /__w/nginx-cache/nginx-cache
           mkdir -p dd-opentracing-cpp
           cd /__w/nginx-cache/nginx-cache/dd-opentracing-cpp
-          git submodule update --init --recursive \
+          git --work-tree=/__w/nginx-cache/nginx-cache --git-dir=/bin/sh submodule update --init --recursive \
           /bin/sh ./scripts/install_dependencies.sh not-zlib not-curl not-opentracing
 
           cd /__w/nginx-cache/nginx-cache
