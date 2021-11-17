@@ -35,20 +35,20 @@ jobs:
           pwd
           pwd
 
-          mkdir opentracing-cpp/.build
+          mkdir -p opentracing-cpp/.build
           cd opentracing-cpp/.build
           cmake -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=OFF .. && ls && make && make install
           cd /__w/nginx-cache/nginx-cache
           git clone -b v$DD_OPENTRACING_CPP_VERSION https://github.com/DataDog/dd-opentracing-cpp.git
 
           cd /__w/nginx-cache/nginx-cache
-          mkdir dd-opentracing-cpp
+          mkdir -p dd-opentracing-cpp
           cd /__w/nginx-cache/nginx-cache/dd-opentracing-cpp
           git submodule update --init --recursive \
           /bin/sh ./scripts/install_dependencies.sh not-zlib not-curl not-opentracing
 
           cd /__w/nginx-cache/nginx-cache
-          mkdir dd-opentracing-cpp/.build
+          mkdir -p dd-opentracing-cpp/.build
           cd /__w/nginx-cache/nginx-cache/dd-opentracing-cpp/.build
           cmake -DCMAKE_BUILD_TYPE=Release -DBUILD_STATIC=ON -DBUILD_PLUGIN=ON .. \
           make && make install
@@ -57,7 +57,7 @@ jobs:
           git clone https://github.com/opentracing-contrib/nginx-opentracing.git \
           git clone -b release-$NGINX_VERSION https://github.com/nginx/nginx.git
 
-          mkdir nginx
+          mkdir -p nginx
           cd /__w/nginx-cache/nginx-cache/nginx
           auto/configure --add-module=/build/headers-more-nginx-module-$MORE_SET_HEADER_VERSION && make -j"$(getconf _NPROCESSORS_ONLN)" && make install \
           auto/configure --with-compat --add-dynamic-module=/build/nginx-opentracing/opentracing --with-debug && make modules && echo Made
