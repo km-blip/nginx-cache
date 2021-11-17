@@ -11,9 +11,6 @@ jobs:
     runs-on: ubuntu-latest
     container: 
       nginx:1.21.3-alpine
-      opentracing-cpp.git:1.5.1
-      dd-opentracing-cpp:1.2.0
-      headers-more-nginx-module:0.33
     steps:
 
       - name: Checkout code
