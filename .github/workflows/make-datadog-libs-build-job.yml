@@ -36,7 +36,9 @@ jobs:
           pwd
           #tar -zcvf nginx-module-cache.tar.gz opentracing-cpp
           
-          cd opentracing-cpp/.build/
+          cd opentracing-cpp
+          ls -la
+          cd .build
           cmake -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=OFF .. && ls && make && make install
           
       - name: Create Release
