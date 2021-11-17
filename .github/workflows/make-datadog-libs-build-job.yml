@@ -76,9 +76,9 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: v1.4
+          tag_name: v1.5
           # tag_name: ${{ github.ref }}
-          release_name: Release v1.4
+          release_name: Release v1.5
           # release_name: Release ${{ github.ref }}
           draft: false
           prerelease: false
