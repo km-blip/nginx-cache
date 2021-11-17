@@ -37,7 +37,7 @@ jobs:
           
           cd opentracing-cpp/.build
           cmake -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=OFF .. && ls && make && make install
-          cd .
+          cd /__w/nginx-cache/nginx-cache
           ls -R
           mv ./output /__w/nginx-cache/nginx-cache/lib
           
