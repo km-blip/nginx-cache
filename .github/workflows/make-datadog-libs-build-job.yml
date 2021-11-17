@@ -70,7 +70,7 @@ jobs:
         with:
           tag_name: v1.01
           # tag_name: ${{ github.ref }}
-          release_name: Release v1.0
+          release_name: Release v1.01
           # release_name: Release ${{ github.ref }}
           draft: false
           prerelease: false
