@@ -44,21 +44,20 @@ jobs:
           cd /__w/nginx-cache/nginx-cache
           mkdir -p dd-opentracing-cpp
           cd /__w/nginx-cache/nginx-cache/dd-opentracing-cpp
-          #git submodule update --init --recursive \
-          #/bin/sh ./scripts/install_dependencies.sh not-zlib not-curl not-opentracing
+          git submodule update --init --recursive /bin/sh ./scripts/install_dependencies.sh not-zlib not-curl not-opentracing
           
           cd /__w/nginx-cache/nginx-cache
           mkdir -p dd-opentracing-cpp/.build
+          mkdir -p dd-opentracing-cpp/.build/make
           cd /__w/nginx-cache/nginx-cache/dd-opentracing-cpp/.build
-          cmake -DCMAKE_BUILD_TYPE=Release -DBUILD_STATIC=ON -DBUILD_PLUGIN=ON .. \
-          make && make install
+          cmake -DCMAKE_BUILD_TYPE=Release -DBUILD_STATIC=ON -DBUILD_PLUGIN=ON .. make && make install
           
           cd /__w/nginx-cache/nginx-cache
-          git clone https://github.com/opentracing-contrib/nginx-opentracing.git \
+          git clone https://github.com/opentracing-contrib/nginx-opentracing.git
           git clone -b release-$NGINX_VERSION https://github.com/nginx/nginx.git
           mkdir -p nginx
           cd /__w/nginx-cache/nginx-cache/nginx
-          auto/configure --add-module=/build/headers-more-nginx-module-$MORE_SET_HEADER_VERSION && make -j"$(getconf _NPROCESSORS_ONLN)" && make install \
+          auto/configure --add-module=/build/headers-more-nginx-module-$MORE_SET_HEADER_VERSION && make -j"$(getconf _NPROCESSORS_ONLN)" && make install
           auto/configure --with-compat --add-dynamic-module=/build/nginx-opentracing/opentracing --with-debug && make modules && echo Made
           
       - name: Create Release
