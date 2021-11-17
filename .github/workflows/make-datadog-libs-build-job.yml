@@ -1,0 +1,63 @@
+name: Build and Upload Datadog Library Asset
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ develop ]
+
+jobs:
+  build:
+    name: Upload Release Asset
+    runs-on: ubuntu-latest
+    container: 
+      nginx:1.21.3-alpine
+      opentracing-cpp.git:1.5.1
+      dd-opentracing-cpp:1.2.0
+      headers-more-nginx-module:0.33
+    steps:
+
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      # - name: Build project # This would actually build your project, using zip for an example artifact
+      #   run: |
+      #     zip --junk-paths my-artifact README.md
+
+      - name: Build project
+        env:
+          MORE_SET_HEADER_VERSION: 0.33
+          OPENTRACING_CPP_VERSION: 1.5.1
+          DD_OPENTRACING_CPP_VERSION: 1.2.0
+          NGINX_VERSION: 1.21.3
+        run: |
+          apk update && apk add --no-cache \
+          zip curl=7.79.1-r0 curl-dev=7.79.1-r0 protobuf-dev=3.15.7-r1 pcre-dev=8.44-r0 openssl-dev=1.1.1l-r0 build-base=0.5-r2 cmake=3.20.3-r0 autoconf=2.71-r0 automake=1.16.3-r0 git=2.32.0-r0 wget=1.21.1-r1 && rm -rf /var/cache/apk/*
+          curl -fSL https://github.com/openresty/headers-more-nginx-module/archive/v$MORE_SET_HEADER_VERSION.tar.gz -o $MORE_SET_HEADER_VERSION.tar.gz && tar xvf $MORE_SET_HEADER_VERSION.tar.gz  && \
+          git clone -b v$OPENTRACING_CPP_VERSION https://github.com/opentracing/opentracing-cpp.git
+          ls -la
+          pwd
+          tar -zcvf nginx-module-cache.tar.gz opentracing-cpp
+          ls -la
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: v1.0
+          # tag_name: ${{ github.ref }}
+          release_name: Release v1.0
+          # release_name: Release ${{ github.ref }}
+          draft: false
+          prerelease: false
+
+      - name: Upload Release Asset
+        id: upload-release-asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps
+          asset_path: ./nginx-module-cache.tar.gz
+          asset_name: nginx-module-cache.tar.gz
+          asset_content_type: application/zip
