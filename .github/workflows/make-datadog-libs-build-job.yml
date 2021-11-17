@@ -33,8 +33,9 @@ jobs:
           git clone -b v$OPENTRACING_CPP_VERSION https://github.com/opentracing/opentracing-cpp.git
           ls -la
           pwd
-          tar -zcvf nginx-module-cache.tar.gz opentracing-cpp
-          cd /__w/nginx-cache/nginx-cache
+          pwd
+          #tar -zcvf nginx-module-cache.tar.gz opentracing-cpp
+          cd opentracing-cpp/.build/
           cmake -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=OFF .. && ls && make && make install
           
       - name: Create Release
