@@ -59,8 +59,9 @@ jobs:
           git clone -b release-$NGINX_VERSION https://github.com/nginx/nginx.git
           mkdir -p nginx
           cd /__w/nginx-cache/nginx-cache/nginx
-          auto/configure --add-module=/build/headers-more-nginx-module-$MORE_SET_HEADER_VERSION && make -j"$(getconf _NPROCESSORS_ONLN)" && make install
-          auto/configure --with-compat --add-dynamic-module=/build/nginx-opentracing/opentracing --with-debug && make modules && echo Made
+          mkdir /__w/nginx-cache/nginx-cache/nginx-opentracing/opentracing/config
+          auto/configure --add-module=/__w/nginx-cache/nginx-cache/headers-more-nginx-module-$MORE_SET_HEADER_VERSION && make -j"$(getconf _NPROCESSORS_ONLN)" && make install
+          auto/configure --with-compat --add-dynamic-module=/__w/nginx-cache/nginx-cache/nginx-opentracing/opentracing --with-debug && make modules && echo Made
           
       - name: Create Release
         id: create_release
