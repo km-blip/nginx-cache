@@ -33,12 +33,12 @@ jobs:
           
           curl -fSL https://github.com/openresty/headers-more-nginx-module/archive/v$MORE_SET_HEADER_VERSION.tar.gz -o $MORE_SET_HEADER_VERSION.tar.gz && tar xvf $MORE_SET_HEADER_VERSION.tar.gz
           git clone -b v$OPENTRACING_CPP_VERSION https://github.com/opentracing/opentracing-cpp.git
-          ls -la
-          pwd
           mkdir -p opentracing-cpp/.build
           
           cd opentracing-cpp/.build
           cmake -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=OFF .. && ls && make && make install
+          cd .
+          ls -R
           
           cd /__w/nginx-cache/nginx-cache
           git clone -b v$DD_OPENTRACING_CPP_VERSION https://github.com/DataDog/dd-opentracing-cpp.git
