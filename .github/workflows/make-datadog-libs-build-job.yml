@@ -39,7 +39,7 @@ jobs:
           cmake -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=OFF .. && ls && make && make install
           cd /__w/nginx-cache/nginx-cache
           ls -la
-          mv /output /__w/nginx-cache/nginx-cache/lib
+          mv /__w/nginx-cache/nginx-cache/opentracing-cpp/.build/output /__w/nginx-cache/nginx-cache/lib
           
           cd /__w/nginx-cache/nginx-cache
           git clone -b v$DD_OPENTRACING_CPP_VERSION https://github.com/DataDog/dd-opentracing-cpp.git
