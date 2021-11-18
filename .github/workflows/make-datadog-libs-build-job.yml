@@ -41,7 +41,8 @@ jobs:
           cd /__w/nginx-cache/nginx-cache
           #ls -R
           echo 'mv opentracing-cpp'
-          mv /usr/local/lib /__w/nginx-cache/nginx-cache/lib
+          #mv /usr/local/lib /__w/nginx-cache/nginx-cache/lib
+          cp /usr/local/lib /__w/nginx-cache/nginx-cache/lib
           
           # build libdd_opentracing_plugin.so
           cd /__w/nginx-cache/nginx-cache
@@ -65,7 +66,7 @@ jobs:
           echo 'check libdd'
           cd /usr/local/
           ls -R
-          mv /usr/local/lib64/libdd_opentracing_plugin.so /__w/nginx-cache/nginx-cache/lib
+          cp /usr/local/lib64/libdd_opentracing_plugin.so /__w/nginx-cache/nginx-cache/lib
           
           # build ngx_http_opentracing_module.so
           cd /__w/nginx-cache/nginx-cache
