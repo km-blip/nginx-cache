@@ -64,16 +64,16 @@ jobs:
           cd /__w/nginx-cache/nginx-cache/nginx
           auto/configure --add-module=/__w/nginx-cache/nginx-cache/headers-more-nginx-module-$MORE_SET_HEADER_VERSION && make -j"$(getconf _NPROCESSORS_ONLN)" && make install
           auto/configure --with-compat --add-dynamic-module=/__w/nginx-cache/nginx-cache/nginx-opentracing/opentracing --with-debug && make modules && echo Made
-          pwd
-          cd /__w/nginx-cache/nginx-cache/nginx/objs
-          ls -la
+          #pwd
+          #cd /__w/nginx-cache/nginx-cache/nginx/objs
+          #ls -la
           
-          mv /__w/nginx-cache/nginx-cache/nginx/objs/ngx_http_opentracing_module.so /__w/nginx-cache/nginx-cache/lib/
-          mkdir -p /__w/nginx-cache/nginx-cache/lib/cmake
-          cd /__w/nginx-cache/nginx-cache/opentracing-cpp/.build
+          #mkdir -p /__w/nginx-cache/nginx-cache/lib/cmake
+          #cd /__w/nginx-cache/nginx-cache/opentracing-cpp/.build
           #mv /__w/nginx-cache/nginx-cache/opentracing-cpp/.build /__w/nginx-cache/nginx-cache/lib/cmake
           
           cp -r /usr/local/lib /__w/nginx-cache/nginx-cache/lib
+          mv /__w/nginx-cache/nginx-cache/nginx/objs/ngx_http_opentracing_module.so /__w/nginx-cache/nginx-cache/lib/
           
           
           echo 'check zip'
