@@ -69,7 +69,7 @@ jobs:
           ls -R
           cd /__w/nginx-cache/nginx-cache/nginx
           
-          mv objs/ngx_http_opentracing_module.so /__w/nginx-cache/nginx-cache/lib/ngx_http_opentracing_module.so
+          mv ./__w/nginx-cache/nginx-cache/nginx/objs/ngx_http_opentracing_module.so /__w/nginx-cache/nginx-cache/lib/
           mkdir -p /__w/nginx-cache/nginx-cache/lib/cmake
           cd /__w/nginx-cache/nginx-cache/opentracing-cpp/.build
           #mv /__w/nginx-cache/nginx-cache/opentracing-cpp/.build /__w/nginx-cache/nginx-cache/lib/cmake
