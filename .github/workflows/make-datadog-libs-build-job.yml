@@ -60,8 +60,8 @@ jobs:
           cmake -DCMAKE_BUILD_TYPE=Release -DBUILD_STATIC=ON -DBUILD_PLUGIN=ON .. && make && make install
           echo 'check libdd'
           #ls -R
-          cd /
-          #ls -R
+          cd /usr/local/lib/
+          ls -la
           
           # build ngx_http_opentracing_module.so
           cd /__w/nginx-cache/nginx-cache
