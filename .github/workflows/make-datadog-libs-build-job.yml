@@ -66,7 +66,7 @@ jobs:
           echo 'check libdd'
           cd /usr/local/
           ls -R
-          cp -r /usr/local/lib64/libdd_opentracing_plugin.so /__w/nginx-cache/nginx-cache/lib
+          #cp -r /usr/local/lib64/libdd_opentracing_plugin.so /__w/nginx-cache/nginx-cache/lib
           
           # build ngx_http_opentracing_module.so
           cd /__w/nginx-cache/nginx-cache
@@ -84,6 +84,10 @@ jobs:
           cd /__w/nginx-cache/nginx-cache/opentracing-cpp/.build
           #ls -la
           #mv /__w/nginx-cache/nginx-cache/opentracing-cpp/.build /__w/nginx-cache/nginx-cache/lib/cmake
+          
+          echo 'check zip'
+          cd /__w/nginx-cache/nginx-cache/lib
+          ls -la
           
       - name: Create Release
         id: create_release
