@@ -77,10 +77,9 @@ jobs:
           
           
           echo 'check zip'
-          cd /__w/nginx-cache/nginx-cache/lib
-          ls -la
+          cd /__w/nginx-cache/nginx-cache/
           
-          tar -zcvf nginx-module-cache.tar.gz .lib
+          tar -zcvf nginx-module-cache.tar.gz lib/
           
       - name: Create Release
         id: create_release
