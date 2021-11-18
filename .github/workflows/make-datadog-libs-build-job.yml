@@ -39,7 +39,7 @@ jobs:
           cd opentracing-cpp/.build
           cmake -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=OFF .. && ls && make && make install
           cd /__w/nginx-cache/nginx-cache
-          ls -R
+          #ls -R
           echo 'mv opentracing-cpp'
           mv /usr/local/lib /__w/nginx-cache/nginx-cache/lib
           
@@ -59,6 +59,8 @@ jobs:
           cd /__w/nginx-cache/nginx-cache/dd-opentracing-cpp/.build
           cmake -DCMAKE_BUILD_TYPE=Release -DBUILD_STATIC=ON -DBUILD_PLUGIN=ON .. && make && make install
           echo 'check libdd'
+          cd /usr/local/
+          ls -R
           mv /usr/local/lib64/libdd_opentracing_plugin.so /__w/nginx-cache/nginx-cache/lib
 
           
@@ -85,9 +87,9 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: v1.8
+          tag_name: v1.9
           # tag_name: ${{ github.ref }}
-          release_name: Release v1.8
+          release_name: Release v1.9
           # release_name: Release ${{ github.ref }}
           draft: false
           prerelease: false
