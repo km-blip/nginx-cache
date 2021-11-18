@@ -52,7 +52,8 @@ jobs:
           ls -la
           git submodule update --init --recursive
           #sh /__w/nginx-cache/nginx-cache/install_dependencies.sh not-zlib not-curl not-opentracing
-          /bin/sh ./scripts/install_dependencies.sh not-zlib not-curl not-opentracing
+          sh ./scripts/install_dependencies.sh not-zlib not-curl not-opentracing
+          #/bin/sh ./scripts/install_dependencies.sh not-zlib not-curl not-opentracing
           
           echo 'check dd-all'
           ls -R
