@@ -51,14 +51,16 @@ jobs:
           mkdir -p dd-opentracing-cpp
           cd /__w/nginx-cache/nginx-cache/dd-opentracing-cpp
           git submodule update --init --recursive
-          sh /__w/nginx-cache/nginx-cache/install_dependencies.sh not-zlib not-curl not-opentracing
+          #sh /__w/nginx-cache/nginx-cache/install_dependencies.sh not-zlib not-curl not-opentracing
+          sh ./scripts/install_dependencies.sh not-zlib not-curl not-opentracing
           
           cd /__w/nginx-cache/nginx-cache
           mkdir -p dd-opentracing-cpp/.build
-          mkdir -p dd-opentracing-cpp/.build/make
+          #mkdir -p dd-opentracing-cpp/.build/make
           cd /__w/nginx-cache/nginx-cache/dd-opentracing-cpp/.build
           cmake -DCMAKE_BUILD_TYPE=Release -DBUILD_STATIC=ON -DBUILD_PLUGIN=ON ..
           make && make install
+          
           echo 'check libdd'
           cd /usr/local/
           ls -R
