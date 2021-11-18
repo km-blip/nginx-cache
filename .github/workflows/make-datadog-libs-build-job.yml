@@ -83,6 +83,8 @@ jobs:
           cd /__w/nginx-cache/nginx-cache/lib
           ls -R
           
+          tar -zcvf nginx-module-cache.tar.gz .lib
+          
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
