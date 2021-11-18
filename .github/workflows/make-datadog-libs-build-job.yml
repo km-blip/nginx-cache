@@ -44,10 +44,11 @@ jobs:
           mv /usr/local/lib /__w/nginx-cache/nginx-cache/lib
           
           # build libdd_opentracing_plugin.so
-          cd /__w/nginx-cache/nginx-cache
+          mkdir /build
+          cd /build
           git clone -b v$DD_OPENTRACING_CPP_VERSION https://github.com/DataDog/dd-opentracing-cpp.git
           
-          cd /__w/nginx-cache/nginx-cache
+          cd /build
           mkdir -p dd-opentracing-cpp
           cd dd-opentracing-cpp
           git submodule update --init --recursive
@@ -56,7 +57,7 @@ jobs:
           
           mkdir -p .build
           #mkdir -p dd-opentracing-cpp/.build/make
-          cd .build
+          cd /build/dd-opentracing-cpp/.build
           cmake -DCMAKE_BUILD_TYPE=Release -DBUILD_STATIC=ON -DBUILD_PLUGIN=ON ..
           make && make install
           
