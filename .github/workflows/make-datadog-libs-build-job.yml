@@ -65,9 +65,8 @@ jobs:
           auto/configure --add-module=/__w/nginx-cache/nginx-cache/headers-more-nginx-module-$MORE_SET_HEADER_VERSION && make -j"$(getconf _NPROCESSORS_ONLN)" && make install
           auto/configure --with-compat --add-dynamic-module=/__w/nginx-cache/nginx-cache/nginx-opentracing/opentracing --with-debug && make modules && echo Made
           pwd
-          cd /
-          ls -R
           cd /__w/nginx-cache/nginx-cache/nginx
+          ls -R
           
           mv ./__w/nginx-cache/nginx-cache/nginx/objs/ngx_http_opentracing_module.so /__w/nginx-cache/nginx-cache/lib/
           mkdir -p /__w/nginx-cache/nginx-cache/lib/cmake
