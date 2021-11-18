@@ -47,15 +47,16 @@ jobs:
           cd /__w/nginx-cache/nginx-cache
           git clone -b v$DD_OPENTRACING_CPP_VERSION https://github.com/DataDog/dd-opentracing-cpp.git
           
-          cd /__w/nginx-cache/nginx-cache
           mkdir -p dd-opentracing-cpp
           cd dd-opentracing-cpp
+          ls -la
           git submodule update --init --recursive
           #sh /__w/nginx-cache/nginx-cache/install_dependencies.sh not-zlib not-curl not-opentracing
           /bin/sh ./scripts/install_dependencies.sh not-zlib not-curl not-opentracing
           
-          mkdir -p .build
-          #mkdir -p dd-opentracing-cpp/.build/make
+          echo 'check dd-all'
+          ls -R
+          mkdir .build
           cd .build
           cmake -DCMAKE_BUILD_TYPE=Release -DBUILD_STATIC=ON -DBUILD_PLUGIN=ON ..
           make && make install
