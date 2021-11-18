@@ -66,7 +66,7 @@ jobs:
           auto/configure --with-compat --add-dynamic-module=/__w/nginx-cache/nginx-cache/nginx-opentracing/opentracing --with-debug && make modules && echo Made
           pwd
           cd /__w/nginx-cache/nginx-cache/nginx
-          ls -R
+          ls -la
           
           mv ./__w/nginx-cache/nginx-cache/nginx/objs/ngx_http_opentracing_module.so /__w/nginx-cache/nginx-cache/lib/
           mkdir -p /__w/nginx-cache/nginx-cache/lib/cmake
@@ -78,7 +78,7 @@ jobs:
           
           echo 'check zip'
           cd /__w/nginx-cache/nginx-cache/lib
-          ls -R
+          ls -la
           
           tar -zcvf nginx-module-cache.tar.gz .lib
           
