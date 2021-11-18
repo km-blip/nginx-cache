@@ -57,7 +57,8 @@ jobs:
           mkdir -p dd-opentracing-cpp/.build
           mkdir -p dd-opentracing-cpp/.build/make
           cd /__w/nginx-cache/nginx-cache/dd-opentracing-cpp/.build
-          cmake -DCMAKE_BUILD_TYPE=Release -DBUILD_STATIC=ON -DBUILD_PLUGIN=ON .. && make && make install
+          cmake -DCMAKE_BUILD_TYPE=Release -DBUILD_STATIC=ON -DBUILD_PLUGIN=ON ..
+          make && make install
           echo 'check libdd'
           cd /usr/local/
           ls -R
