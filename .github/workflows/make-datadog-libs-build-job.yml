@@ -27,7 +27,7 @@ jobs:
           DD_OPENTRACING_CPP_VERSION: 1.2.0
           NGINX_VERSION: 1.21.3
         run: |
-          cd /build
+          cd /__w/nginx-cache/nginx-cache
           apk update && apk add --no-cache curl=7.79.1-r0 curl-dev=7.79.1-r0 protobuf-dev=3.15.7-r1 pcre-dev=8.44-r0 openssl-dev=1.1.1l-r0 build-base=0.5-r2 cmake=3.20.3-r0 autoconf=2.71-r0 automake=1.16.3-r0 git=2.32.0-r0 wget=1.21.1-r1
           rm -rf /var/cache/apk/*
           
@@ -38,49 +38,47 @@ jobs:
           mkdir -p opentracing-cpp/.build
           cd opentracing-cpp/.build
           cmake -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=OFF .. && ls && make && make install
-          cd /build
+          cd /__w/nginx-cache/nginx-cache
           #ls -R
           echo 'mv opentracing-cpp'
-          mv /usr/local/lib /build/lib
+          mv /usr/local/lib /__w/nginx-cache/nginx-cache/lib
           
           # build libdd_opentracing_plugin.so
-          mkdir /build
-          cd /build
+          cd /__w/nginx-cache/nginx-cache
           git clone -b v$DD_OPENTRACING_CPP_VERSION https://github.com/DataDog/dd-opentracing-cpp.git
           
-          cd /build
+          cd /__w/nginx-cache/nginx-cache
           mkdir -p dd-opentracing-cpp
           cd dd-opentracing-cpp
           git submodule update --init --recursive
-          #sh /build/install_dependencies.sh not-zlib not-curl not-opentracing
+          #sh /__w/nginx-cache/nginx-cache/install_dependencies.sh not-zlib not-curl not-opentracing
           /bin/sh ./scripts/install_dependencies.sh not-zlib not-curl not-opentracing
           
           mkdir -p .build
           #mkdir -p dd-opentracing-cpp/.build/make
-          cd /build/dd-opentracing-cpp/.build
+          cd .build
           cmake -DCMAKE_BUILD_TYPE=Release -DBUILD_STATIC=ON -DBUILD_PLUGIN=ON ..
           make && make install
           
           echo 'check libdd'
           cd /usr/local/
           ls -R
-          mv /usr/local/lib64/libdd_opentracing_plugin.so /build/lib
-
+          mv /usr/local/lib64/libdd_opentracing_plugin.so /__w/nginx-cache/nginx-cache/lib
           
           # build ngx_http_opentracing_module.so
-          cd /build
+          cd /__w/nginx-cache/nginx-cache
           git clone https://github.com/opentracing-contrib/nginx-opentracing.git
           git clone -b release-$NGINX_VERSION https://github.com/nginx/nginx.git
           mkdir -p nginx
-          cd /build/nginx
-          #mkdir -p /build/nginx-opentracing/opentracing/config
-          auto/configure --add-module=/build/headers-more-nginx-module-$MORE_SET_HEADER_VERSION && make -j"$(getconf _NPROCESSORS_ONLN)" && make install
-          auto/configure --with-compat --add-dynamic-module=/build/nginx-opentracing/opentracing --with-debug && make modules && echo Made
+          cd /__w/nginx-cache/nginx-cache/nginx
+          #mkdir -p /__w/nginx-cache/nginx-cache/nginx-opentracing/opentracing/config
+          auto/configure --add-module=/__w/nginx-cache/nginx-cache/headers-more-nginx-module-$MORE_SET_HEADER_VERSION && make -j"$(getconf _NPROCESSORS_ONLN)" && make install
+          auto/configure --with-compat --add-dynamic-module=/__w/nginx-cache/nginx-cache/nginx-opentracing/opentracing --with-debug && make modules && echo Made
           cd /
           #ls -R
-          #mv /objs/ngx_http_opentracing_module.so /build/lib/ngx_http_opentracing_module.so
-          mkdir -p /build/lib/cmake
-          cd /build/opentracing-cpp/.build
+          #mv /objs/ngx_http_opentracing_module.so /__w/nginx-cache/nginx-cache/lib/ngx_http_opentracing_module.so
+          mkdir -p /__w/nginx-cache/nginx-cache/lib/cmake
+          cd /__w/nginx-cache/nginx-cache/opentracing-cpp/.build
           #ls -la
           #mv /__w/nginx-cache/nginx-cache/opentracing-cpp/.build /__w/nginx-cache/nginx-cache/lib/cmake
           
@@ -104,6 +102,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps
-          asset_path: /__w/nginx-cache/nginx-cache/nginx-module-cache.tar.gz
+          asset_path: ./nginx-module-cache.tar.gz
           asset_name: nginx-module-cache.tar.gz
           asset_content_type: application/zip
