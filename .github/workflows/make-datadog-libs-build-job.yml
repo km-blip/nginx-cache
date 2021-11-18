@@ -39,7 +39,7 @@ jobs:
           cd opentracing-cpp/.build
           cmake -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=OFF .. && ls && make && make install
           cd /__w/nginx-cache/nginx-cache
-          ls -la
+          ls -R
           echo 'mv opentracing-cpp'
           mv /__w/nginx-cache/nginx-cache/opentracing-cpp/.build/output /__w/nginx-cache/nginx-cache/lib
           
@@ -59,9 +59,9 @@ jobs:
           cd /__w/nginx-cache/nginx-cache/dd-opentracing-cpp/.build
           cmake -DCMAKE_BUILD_TYPE=Release -DBUILD_STATIC=ON -DBUILD_PLUGIN=ON .. && make && make install
           echo 'check libdd'
-          ls -R
+          #ls -R
           cd /
-          ls -R
+          #ls -R
           
           # build ngx_http_opentracing_module.so
           cd /__w/nginx-cache/nginx-cache
@@ -77,7 +77,7 @@ jobs:
           #mv /objs/ngx_http_opentracing_module.so /__w/nginx-cache/nginx-cache/lib/ngx_http_opentracing_module.so
           mkdir -p /__w/nginx-cache/nginx-cache/lib/cmake
           cd /__w/nginx-cache/nginx-cache/opentracing-cpp/.build
-          ls -la
+          #ls -la
           #mv /__w/nginx-cache/nginx-cache/opentracing-cpp/.build /__w/nginx-cache/nginx-cache/lib/cmake
           
       - name: Create Release
