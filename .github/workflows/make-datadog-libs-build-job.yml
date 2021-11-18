@@ -77,7 +77,12 @@ jobs:
           cd /__w/nginx-cache/nginx-cache/opentracing-cpp/.build
           #mv /__w/nginx-cache/nginx-cache/opentracing-cpp/.build /__w/nginx-cache/nginx-cache/lib/cmake
           
+          cd ..
+          pwd
+          ls -R
+          
           cp -r /usr/local/lib /__w/nginx-cache/nginx-cache/lib
+          
           
           echo 'check zip'
           cd /__w/nginx-cache/nginx-cache/lib
