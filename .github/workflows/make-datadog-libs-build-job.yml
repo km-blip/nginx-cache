@@ -70,15 +70,16 @@ jobs:
           
           tar -zcvf nginx-module-cache.tar.gz lib/
           
+          echo "MORE_SET_HEADER_VERSION=0.33" >> $GITHUB_ENV
+          echo "OPENTRACING_CPP_VERSION=1.5.1" >> $GITHUB_ENV
+          echo "DD_OPENTRACING_CPP_VERSION=1.2.0" >> $GITHUB_ENV
+          echo "NGINX_VERSION=1.21.3" >> $GITHUB_ENV
+          
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          MORE_SET_HEADER_VERSION: 0.33
-          OPENTRACING_CPP_VERSION: 1.5.1
-          DD_OPENTRACING_CPP_VERSION: 1.2.0
-          NGINX_VERSION: 1.21.3
         with:
           tag_name: v1.0
           # tag_name: ${{ github.ref }}
